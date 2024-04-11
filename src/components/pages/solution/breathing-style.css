@@ -1,0 +1,33 @@
+.ww{
+    border: 2px solid purple;
+}
+
+.anim-circle {
+    color: transparent;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: rgba(20, 171, 191, 0.889);
+
+
+    animation: breathe 8s linear infinite;
+  }
+
+  @keyframes breathe {
+    0% {
+   box-shadow: 0 0 0 15px rgba(41, 116, 126, 0.712), 0 0 0 30px rgba(48, 146, 159, 0.893), 0 0 0 45px rgba(48, 146, 159, 0.893), 0 0 0 60px rgba(48, 146, 159, 0.893), 0 0 0 75px rgba(48, 146, 159, 0.893);
+    }
+    50% {
+   box-shadow: 0 0 0 25px rgba(42, 116, 126, 0.726), 0 0 0 50px rgba(48, 146, 159, 0.893), 0 0 0 75px rgba(48, 146, 159, 0.893), 0 0 0 100px rgba(48, 146, 159, 0.893), 0 0 0 125px rgba(48, 146, 159, 0.893);
+    }
+    100% {
+   box-shadow: 0 0 0 15px rgba(48, 146, 159, 0.607), 0 0 0 30px rgba(48, 146, 159, 0.607), 0 0 0 45px rgba(48, 146, 159, 0.607), 0 0 0 60px rgba(48, 146, 159, 0.607), 0 0 0 75px rgba(48, 146, 159, 0.607);
+    }
+   }
+
+
+   .breathing-exe-drop-shadow{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+   }
