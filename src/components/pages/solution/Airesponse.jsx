@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import API_URL from '../../../helper'
 const Airesponse = ({userInputText}) => {
 
     //  const apiKey =(import.meta.env.VITE_REACT_APP_OPENAI_API_KEY)
@@ -16,32 +17,54 @@ const Airesponse = ({userInputText}) => {
     //     console.log(res)
     //  }
     
+
     const handleSend = async () => {
-        const response = await axios.post(
-            "https://api.openai.com/v1/completions",
-            {
-                prompt: `read the text : "${userInputText}" . NOW analyze it and answer few question ONLY IN  paragraph and NOT IN bullet points and try to keep the answer in ONLY ONE paragraph and SHORT . is the text fluent and well articulated ?, if no then why not and how can the same thing be said in better way. NOTE that the text I will provide you won't have any context and background and IT'S okay to be that. You just paraphrae the text in better way. your job is to help me  improve my communication and articulation by analyzing the text. Also note that the given text is not written but actually spoken. you have to improve my verbal articulation and communication by analyzing that text.`,
 
-                model: 'gpt-3.5-turbo-instruct',
-                temperature: 0.5,
-                max_tokens: 356,
-                // top_p: 1,
-                // frequency_penalty: 0,
-                // presense_penalty: 0
-            },
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "Bearer " + (import.meta.env.VITE_REACT_APP_OPENAI_API_KEY),
-                },
-            }
-        );
+        try {
 
-        setAiResponseAns(response.data.choices[0].text)
-       // console.log("the user input text is : " + userInputText)
+            const response = await axios.post(`${API_URL}ai` , { prompt: `read the text : "${userInputText}" . NOW analyze the given text and answer few question ONLY IN  paragraph and NOT IN bullet points and try to keep the answer in ONLY ONE paragraph and SHORT. Now answer this question - Is the text fluent and well articulated ?, if no then why not and how can the same thing be said in better way. NOTE that the text I will provide you won't have any context and background and IT'S okay to be that. You just paraphrase the text in better way. your job is to help me improve my communication and articulation by analyzing the text. Also note that the given text is not written but actually spoken. you have to improve my verbal articulation and communication by analyzing that text. NOTE : do not refer my text as "text" but refer it as my "speech"`,
+        })
+    
+        console.log(response.data.result)
+        setAiResponseAns(response.data.result)
+            
+        } catch (error) {
+            console.log(error)
+        }
 
-       // return response.data.choices[0].text;
-    };
+       
+
+    }
+
+
+    // open ai api code below
+
+    // const handleSend = async () => {
+    //     const response = await axios.post(
+    //         "https://api.openai.com/v1/completions",
+    //         {
+    //             prompt: `read the text : "${userInputText}" . NOW analyze it and answer few question ONLY IN  paragraph and NOT IN bullet points and try to keep the answer in ONLY ONE paragraph and SHORT . is the text fluent and well articulated ?, if no then why not and how can the same thing be said in better way. NOTE that the text I will provide you won't have any context and background and IT'S okay to be that. You just paraphrae the text in better way. your job is to help me  improve my communication and articulation by analyzing the text. Also note that the given text is not written but actually spoken. you have to improve my verbal articulation and communication by analyzing that text.`,
+
+    //             model: 'gpt-3.5-turbo-instruct',
+    //             temperature: 0.5,
+    //             max_tokens: 356,
+    //             // top_p: 1,
+    //             // frequency_penalty: 0,
+    //             // presense_penalty: 0
+    //         },
+    //         {
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 Authorization: "Bearer " + (import.meta.env.VITE_REACT_APP_OPENAI_API_KEY),
+    //             },
+    //         }
+    //     );
+
+    //     setAiResponseAns(response.data.choices[0].text)
+    //    // console.log("the user input text is : " + userInputText)
+
+    //    // return response.data.choices[0].text;
+    // };
 
 
 
